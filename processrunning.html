@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8">
+    <title>Shippers</title>
+  </head>
+
+  <body style="margin-left: 0%;padding-left: 2%;">
+    <h1> Process Running For : {{companyname}} </h1>
+    <br>
+    <p>Date/Time : <span id="datetime"></span></p>
+    <p>User : {{idfield}} </p>
+    <p>Process Id : {{processid}} </p>
+    <p>Status : <span id="status"></span></p>
+    <br>
+    <br>
+    <script>
+      document.write('<a href="javascript:history.back()">Return to Database Table</a>');
+    </script>
+  </body>
+
+  <script type='text/javascript'>
+    
+    var dt = new Date();
+    document.getElementById('datetime').innerHTML = dt.toDateString() + ' ' + dt.toLocaleTimeString()
+
+    var i = 0;
+    var message = null;
+
+    var processInterval = setInterval(ProcessFunction, 1000)
+    
+      //loop runs with interval of 1000 miliseconds
+      function ProcessFunction() 
+      {
+        i = i + 1;
+        if (CheckProcessStatus() == false)
+        {
+          message = 'Process Runnning : ' + i.toString();
+          document.getElementById('status').innerHTML = message
+        }
+        else
+        {
+          message = 'Process Complete';
+          document.getElementById('status').innerHTML = message
+          clearInterval(processInterval)
+        } 
+      }
+
+      //function to check if the process has been completed
+      //(in this test case, this is set to true when i = 4)
+      function CheckProcessStatus()
+      {
+        if (i > 3)
+        {
+          return true
+        }
+        return false
+      }
+
+  </script>
+
+</html>
+

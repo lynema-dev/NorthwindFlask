@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <title>Shippers</title>
+    </head>
+
+    <style>
+        td{
+               width: 150px;
+               text-align: center;
+               border: 1px solid black;
+               padding: 5px;
+        }
+        th{
+            background-color:lightgrey
+        }
+        tr:nth-child(even){
+            background-color:lightgrey
+        }
+        h1{
+            padding: 10px;
+        }
+        p{
+            padding: 10px;
+        }
+        hr{
+            width: 30%;
+            margin-left: 10px;
+        }
+    </style>
+
+    <body style="margin-left: 0%;padding-left: 2%;">
+        <h1> Shippers </h1>
+        <p> User : {{idfield}} </p>
+
+        <table class = 'tableobject'>
+            <thead>
+            <tr>
+                {% for column in columns %}
+                    <th>{{column}}</th>
+                {% endfor %}
+                <th>Run Process</th>
+            </tr>
+            </thead>
+            <tbody>
+                {% for row in data %} 
+                    <tr>
+                        {% for cell in row %}
+                            <td>{{cell}}</td>
+                        {% endfor %}
+                        <td><a href="{{'postback/' + row[1] + '/' + row[3]}}">Run Process</a></td>
+                    </tr>
+                {% endfor %} 
+            </tbody>
+        </table>
+
+    </body>
+
+
+</html>
+
+
+
